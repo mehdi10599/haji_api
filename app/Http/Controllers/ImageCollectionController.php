@@ -36,7 +36,7 @@ class ImageCollectionController extends Controller
             $imageCollection->imageAddress = $imageAddress;
             $imageCollection->save();
 
-            return response()->json(['imageAddress'=>$imageAddress,],200);
+            return response()->json(['imageAddress'=>'storage/app/public/'.$imageAddress,],200);
         }catch (\Exception $exception){
             return  response()->json(['message'=>[$exception->getMessage()]],500);
         }

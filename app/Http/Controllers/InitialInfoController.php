@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\ImageCollection;
 use App\Models\InitialInfo;
 use Illuminate\Http\Request;
 
@@ -9,12 +10,33 @@ class InitialInfoController extends Controller
 {
     public function show($initialInfoId)
     {
-        $initialInfo = InitialInfo::where('id',$initialInfoId)->first();
-        if($initialInfo == null){
-            return response()->json(['message' => 'Not Found.'], 404);
-        }else{
-            return response()->json($initialInfo,200);
+        try {
+            $initialInfo = InitialInfo::where('id',$initialInfoId)->first();
+            if($initialInfo == null){
+                return response()->json(['message' => 'Not Found.'], 404);
+            }else{
+                $allImages = ImageCollection::whereBelongsTo($initialInfo)->get();
+                $coverImage = '';
+                $circleImage = '';
+                $collectionImages = [];
+                foreach($allImages as $image){
+                    if($image['imageField'] == 'cover'){
+                        $coverImage = 'storage/app/public/'.$image['imageAddress'];
+                    }else if($image['imageField'] == 'collection'){
+                        $collectionImages[] = 'storage/app/public/'.$image['imageAddress'];
+                    }else if($image['imageField'] == 'circle'){
+                        $circleImage = 'storage/app/public/'.$image['imageAddress'];
+                    }
+                }
+                $initialInfo['coverImage'] = $coverImage;
+                $initialInfo['circleImage'] = $circleImage;
+                $initialInfo['collectionImages'] = $collectionImages;
+                return response()->json([$initialInfo],200);
+            }
+        }catch (\Exception $exception){
+            return  response()->json(['message'=>[$exception->getMessage()]],500);
         }
+
 
     }
 
@@ -25,7 +47,6 @@ class InitialInfoController extends Controller
                 'name' => 'required|string|max:255',
                 'family' => 'required|string|max:255',
                 'province' => 'required|string|max:255',
-                'image' => 'required|string|max:255',
                 'fatherName' => 'required|string|max:255',
                 'birthDay' => 'required|string|max:255',
                 'birthLocation' => 'required|string|max:255',
@@ -37,13 +58,26 @@ class InitialInfoController extends Controller
                 'category' => 'required|string|max:255',
                 'categoryTitle' => 'required|string|max:255',
                 'specialTitle' => 'required|string|max:255',
+                'nationality' => 'required|string|max:255',
+                'dispatchGroup' => 'required|string|max:255',
+                'militaryResponsibility' => 'required|string|max:255',
+                'militaryDegree' => 'required|string|max:255',
+                'education' => 'required|string|max:255',
+                'nickname' => 'required|string|max:255',
+                'biography' => 'required|string',
+                'testament' => 'required|string',
+                'shahadatDate' => 'required|string|max:255',
+                'shahadatLocation' => 'required|string|max:255',
+                'shahadatOperationName' => 'required|string|max:255',
+                'shahadatDescription' => 'required|string',
+                'memoryTitle' => 'required|string|max:255',
+                'memoryDescription' => 'required|string',
             ]);
 
             $initialInfo = new InitialInfo();
             $initialInfo->name = $request->name;
             $initialInfo->family = $request->family;
             $initialInfo->province = $request->province;
-            $initialInfo->image = $request->image;
             $initialInfo->fatherName = $request->fatherName;
             $initialInfo->birthDay = $request->birthDay;
             $initialInfo->birthLocation = $request->birthLocation;
@@ -55,6 +89,20 @@ class InitialInfoController extends Controller
             $initialInfo->category = $request->category;
             $initialInfo->categoryTitle = $request->categoryTitle;
             $initialInfo->specialTitle = $request->specialTitle;
+            $initialInfo->nationality = $request->nationality;
+            $initialInfo->dispatchGroup = $request->dispatchGroup;
+            $initialInfo->militaryResponsibility = $request->militaryResponsibility;
+            $initialInfo->militaryDegree = $request->militaryDegree;
+            $initialInfo->education = $request->education;
+            $initialInfo->nickname = $request->nickname;
+            $initialInfo->biography = $request->biography;
+            $initialInfo->testament = $request->testament;
+            $initialInfo->shahadatDate = $request->shahadatDate;
+            $initialInfo->shahadatLocation = $request->shahadatLocation;
+            $initialInfo->shahadatOperationName = $request->shahadatOperationName;
+            $initialInfo->shahadatDescription = $request->shahadatDescription;
+            $initialInfo->memoryTitle = $request->memoryTitle;
+            $initialInfo->memoryDescription = $request->memoryDescription;
 
 
             $initialInfo->save();
@@ -85,12 +133,25 @@ class InitialInfoController extends Controller
                 'category' => 'required|string|max:255',
                 'categoryTitle' => 'required|string|max:255',
                 'specialTitle' => 'required|string|max:255',
+                'nationality' => 'required|string|max:255',
+                'dispatchGroup' => 'required|string|max:255',
+                'militaryResponsibility' => 'required|string|max:255',
+                'militaryDegree' => 'required|string|max:255',
+                'education' => 'required|string|max:255',
+                'nickname' => 'required|string|max:255',
+                'biography' => 'required|string',
+                'testament' => 'required|string',
+                'shahadatDate' => 'required|string|max:255',
+                'shahadatLocation' => 'required|string|max:255',
+                'shahadatOperationName' => 'required|string|max:255',
+                'shahadatDescription' => 'required|string',
+                'memoryTitle' => 'required|string|max:255',
+                'memoryDescription' => 'required|string',
             ]);
 
             $initialInfo->name = $request->name;
             $initialInfo->family = $request->family;
             $initialInfo->province = $request->province;
-            $initialInfo->image = $request->image;
             $initialInfo->fatherName = $request->fatherName;
             $initialInfo->birthDay = $request->birthDay;
             $initialInfo->birthLocation = $request->birthLocation;
@@ -102,6 +163,20 @@ class InitialInfoController extends Controller
             $initialInfo->category = $request->category;
             $initialInfo->categoryTitle = $request->categoryTitle;
             $initialInfo->specialTitle = $request->specialTitle;
+            $initialInfo->nationality = $request->nationality;
+            $initialInfo->dispatchGroup = $request->dispatchGroup;
+            $initialInfo->militaryResponsibility = $request->militaryResponsibility;
+            $initialInfo->militaryDegree = $request->militaryDegree;
+            $initialInfo->education = $request->education;
+            $initialInfo->nickname = $request->nickname;
+            $initialInfo->biography = $request->biography;
+            $initialInfo->testament = $request->testament;
+            $initialInfo->shahadatDate = $request->shahadatDate;
+            $initialInfo->shahadatLocation = $request->shahadatLocation;
+            $initialInfo->shahadatOperationName = $request->shahadatOperationName;
+            $initialInfo->shahadatDescription = $request->shahadatDescription;
+            $initialInfo->memoryTitle = $request->memoryTitle;
+            $initialInfo->memoryDescription = $request->memoryDescription;
 
             $initialInfo->save();
             return response()->json(['message'=>'field has been updated ',],200);
@@ -117,7 +192,9 @@ class InitialInfoController extends Controller
             if($initialInfo == null){
                 return response()->json(['message' => 'Not Found.'], 404);
             }else{
+                ImageCollectionController::deleteImageByShahidId($initialInfoId);
                 $initialInfo->delete();
+                $initialInfo->images()->delete();
                 return response()->json(['message'=>'field has been deleted ',],200);
             }
         }catch (\Exception $exception){

@@ -18,7 +18,6 @@ class CreateInitialInfosTable extends Migration
             $table->string('name')->nullable();
             $table->string('family')->nullable();
             $table->string('province')->nullable();
-            $table->string('image')->nullable();
             $table->string('fatherName')->nullable();
             $table->string('birthDay')->nullable();
             $table->string('birthLocation')->nullable();
@@ -30,6 +29,20 @@ class CreateInitialInfosTable extends Migration
             $table->string('category')->nullable();
             $table->string('categoryTitle')->nullable();
             $table->string('specialTitle')->nullable();
+            $table->string('nationality');
+            $table->string('dispatchGroup');
+            $table->string('militaryResponsibility');
+            $table->string('militaryDegree');
+            $table->string('education');
+            $table->string('nickname');
+            $table->longText('biography');
+            $table->longText('testament');
+            $table->string('shahadatDate');
+            $table->string('shahadatLocation');
+            $table->string('shahadatOperationName');
+            $table->string('shahadatDescription');
+            $table->string('memoryTitle');
+            $table->string('memoryDescription');
             $table->timestamps();
         });
     }

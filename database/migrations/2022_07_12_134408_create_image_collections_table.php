@@ -18,6 +18,8 @@ class CreateImageCollectionsTable extends Migration
             $table->unsignedBigInteger('shahidId');
             $table->string('imageField');
             $table->string('imageAddress');
+
+            $table->foreign('shahidId')->references('id')->on('initial_infos')->onDelete('cascade');
             $table->timestamps();
         });
     }

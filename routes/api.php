@@ -30,14 +30,9 @@ Route::post('/login', [AuthController::class, 'login']);
 Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
 Route::post('initial_info/create', [InitialInfoController::class, 'create'])->middleware('auth:sanctum');
-Route::get('initial_info/show/{id}', [InitialInfoController::class, 'show'])->middleware('auth:sanctum');
+Route::get('initial_info/show/{id}', [InitialInfoController::class, 'show']);
 Route::post('initial_info/update/{id}', [InitialInfoController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('initial_info/delete/{id}', [InitialInfoController::class, 'delete'])->middleware('auth:sanctum');
-
-Route::post('secondary_info/create', [SecondaryInfoController::class, 'create'])->middleware('auth:sanctum');
-Route::get('secondary_info/show/{id}', [SecondaryInfoController::class, 'show'])->middleware('auth:sanctum');
-Route::post('secondary_info/update/{id}', [SecondaryInfoController::class, 'update'])->middleware('auth:sanctum');
-Route::delete('secondary_info/delete/{id}', [SecondaryInfoController::class, 'delete'])->middleware('auth:sanctum');
 
 Route::post('comment/create', [CommentController::class, 'create']);
 Route::get('comment/show/{id}', [CommentController::class, 'show']);

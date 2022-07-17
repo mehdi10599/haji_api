@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Http\Controllers\ImageCollectionController;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
@@ -12,7 +13,6 @@ class InitialInfo extends Model
         'name',
         'family',
         'province',
-        'image',
         'fatherName',
         'birthDay',
         'birthLocation',
@@ -24,5 +24,24 @@ class InitialInfo extends Model
         'category',
         'categoryTitle',
         'specialTitle',
+        'nationality',
+        'dispatchGroup',
+        'militaryResponsibility',
+        'militaryDegree',
+        'education',
+        'nickname',
+        'biography',
+        'testament',
+        'shahadatDate',
+        'shahadatLocation',
+        'shahadatOperationName',
+        'shahadatDescription',
+        'memoryTitle',
+        'memoryDescription',
     ];
+
+    public function images()
+    {
+        return $this->hasMany(ImageCollection::class,'shahidId','id');
+    }
 }

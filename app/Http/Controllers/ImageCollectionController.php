@@ -5,7 +5,6 @@ namespace App\Http\Controllers;
 use App\Models\ImageCollection;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Support\Str;
 
 class ImageCollectionController extends Controller
 {
@@ -53,6 +52,16 @@ class ImageCollectionController extends Controller
                 $image->delete();
                 return response()->json(['message'=>'field has been deleted ',],200);
             }
+        }catch (\Exception $exception){
+            return  response()->json(['message'=>[$exception->getMessage()]],500);
+        }
+    }
+
+    static public function deleteImageByShahidId($shahidId){
+        try {
+            $dir = 'public/images/'.$shahidId.'/';
+            $res=Storage::deleteDirectory($dir);
+            return response()->json(['message'=>'fields in '.$dir.' has been deleted res='.$res.' .',],200);
         }catch (\Exception $exception){
             return  response()->json(['message'=>[$exception->getMessage()]],500);
         }

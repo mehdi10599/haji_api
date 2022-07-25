@@ -27,8 +27,8 @@ class CreateInitialInfosTable extends Migration
             $table->boolean('maritalStatus')->nullable();
             $table->boolean('special')->nullable();
             $table->string('category')->nullable();
-            $table->string('categoryTitle')->nullable();
-            $table->string('specialTitle')->nullable();
+            $table->boolean('categoryTitr')->default(false);
+            $table->boolean('specialTitr')->default(false);
             $table->string('nationality');
             $table->string('dispatchGroup');
             $table->string('militaryResponsibility');
@@ -43,6 +43,11 @@ class CreateInitialInfosTable extends Migration
             $table->string('shahadatDescription');
             $table->string('memoryTitle');
             $table->string('memoryDescription');
+            $table->string('mazarNo');
+            $table->string('tombPiece');
+            $table->string('graveSite');
+            $table->string('bodyPosition');
+            $table->string('rowOfTombs');
             $table->timestamps();
         });
     }

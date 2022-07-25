@@ -22,8 +22,8 @@ class InitialInfo extends Model
         'maritalStatus',
         'special',
         'category',
-        'categoryTitle',
-        'specialTitle',
+        'categoryTitr',
+        'specialTitr',
         'nationality',
         'dispatchGroup',
         'militaryResponsibility',
@@ -38,6 +38,11 @@ class InitialInfo extends Model
         'shahadatDescription',
         'memoryTitle',
         'memoryDescription',
+        'mazarNo',
+        'tombPiece',
+        'graveSite',
+        'bodyPosition',
+        'rowOfTombs',
     ];
 
     public function images()

@@ -56,8 +56,6 @@ class InitialInfoController extends Controller
                 'maritalStatus' => 'required|bool',
                 'special' => 'required|bool',
                 'category' => 'required|string|max:255',
-                'categoryTitle' => 'required|string|max:255',
-                'specialTitle' => 'required|string|max:255',
                 'nationality' => 'required|string|max:255',
                 'dispatchGroup' => 'required|string|max:255',
                 'militaryResponsibility' => 'required|string|max:255',
@@ -72,6 +70,11 @@ class InitialInfoController extends Controller
                 'shahadatDescription' => 'required|string',
                 'memoryTitle' => 'required|string|max:255',
                 'memoryDescription' => 'required|string',
+                'mazarNo' => 'required|string',
+                'tombPiece' => 'required|string',
+                'graveSite' => 'required|string',
+                'bodyPosition' => 'required|string',
+                'rowOfTombs' => 'required|string',
             ]);
 
             $initialInfo = new InitialInfo();
@@ -87,8 +90,8 @@ class InitialInfoController extends Controller
             $initialInfo->maritalStatus = $request->maritalStatus;
             $initialInfo->special = $request->special;
             $initialInfo->category = $request->category;
-            $initialInfo->categoryTitle = $request->categoryTitle;
-            $initialInfo->specialTitle = $request->specialTitle;
+            $initialInfo->categoryTitr = $request->categoryTitr;
+            $initialInfo->specialTitr = $request->specialTitr;
             $initialInfo->nationality = $request->nationality;
             $initialInfo->dispatchGroup = $request->dispatchGroup;
             $initialInfo->militaryResponsibility = $request->militaryResponsibility;
@@ -103,6 +106,11 @@ class InitialInfoController extends Controller
             $initialInfo->shahadatDescription = $request->shahadatDescription;
             $initialInfo->memoryTitle = $request->memoryTitle;
             $initialInfo->memoryDescription = $request->memoryDescription;
+            $initialInfo->mazarNo = $request->mazarNo;
+            $initialInfo->tombPiece = $request->tombPiece;
+            $initialInfo->graveSite = $request->graveSite;
+            $initialInfo->bodyPosition = $request->bodyPosition;
+            $initialInfo->rowOfTombs = $request->rowOfTombs;
 
 
             $initialInfo->save();
@@ -131,8 +139,6 @@ class InitialInfoController extends Controller
                 'maritalStatus' => 'required|bool',
                 'special' => 'required|bool',
                 'category' => 'required|string|max:255',
-                'categoryTitle' => 'required|string|max:255',
-                'specialTitle' => 'required|string|max:255',
                 'nationality' => 'required|string|max:255',
                 'dispatchGroup' => 'required|string|max:255',
                 'militaryResponsibility' => 'required|string|max:255',
@@ -147,6 +153,11 @@ class InitialInfoController extends Controller
                 'shahadatDescription' => 'required|string',
                 'memoryTitle' => 'required|string|max:255',
                 'memoryDescription' => 'required|string',
+                'mazarNo' => 'required|string',
+                'tombPiece' => 'required|string',
+                'graveSite' => 'required|string',
+                'bodyPosition' => 'required|string',
+                'rowOfTombs' => 'required|string',
             ]);
 
             $initialInfo->name = $request->name;
@@ -161,8 +172,8 @@ class InitialInfoController extends Controller
             $initialInfo->maritalStatus = $request->maritalStatus;
             $initialInfo->special = $request->special;
             $initialInfo->category = $request->category;
-            $initialInfo->categoryTitle = $request->categoryTitle;
-            $initialInfo->specialTitle = $request->specialTitle;
+            $initialInfo->categoryTitr = $request->categoryTitr;
+            $initialInfo->specialTitr = $request->specialTitr;
             $initialInfo->nationality = $request->nationality;
             $initialInfo->dispatchGroup = $request->dispatchGroup;
             $initialInfo->militaryResponsibility = $request->militaryResponsibility;
@@ -177,6 +188,11 @@ class InitialInfoController extends Controller
             $initialInfo->shahadatDescription = $request->shahadatDescription;
             $initialInfo->memoryTitle = $request->memoryTitle;
             $initialInfo->memoryDescription = $request->memoryDescription;
+            $initialInfo->mazarNo = $request->mazarNo;
+            $initialInfo->tombPiece = $request->tombPiece;
+            $initialInfo->graveSite = $request->graveSite;
+            $initialInfo->bodyPosition = $request->bodyPosition;
+            $initialInfo->rowOfTombs = $request->rowOfTombs;
 
             $initialInfo->save();
             return response()->json(['message'=>'field has been updated ',],200);

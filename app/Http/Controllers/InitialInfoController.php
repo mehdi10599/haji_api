@@ -56,6 +56,7 @@ class InitialInfoController extends Controller
                 'maritalStatus' => 'required|bool',
                 'special' => 'required|bool',
                 'category' => 'required|string|max:255',
+                'job' => 'required|string|max:255',
                 'nationality' => 'required|string|max:255',
                 'dispatchGroup' => 'required|string|max:255',
                 'militaryResponsibility' => 'required|string|max:255',
@@ -92,6 +93,7 @@ class InitialInfoController extends Controller
             $initialInfo->category = $request->category;
             $initialInfo->categoryTitr = $request->categoryTitr;
             $initialInfo->specialTitr = $request->specialTitr;
+            $initialInfo->job = $request->job;
             $initialInfo->nationality = $request->nationality;
             $initialInfo->dispatchGroup = $request->dispatchGroup;
             $initialInfo->militaryResponsibility = $request->militaryResponsibility;
@@ -139,6 +141,7 @@ class InitialInfoController extends Controller
                 'maritalStatus' => 'required|bool',
                 'special' => 'required|bool',
                 'category' => 'required|string|max:255',
+                'job' => 'required|string|max:255',
                 'nationality' => 'required|string|max:255',
                 'dispatchGroup' => 'required|string|max:255',
                 'militaryResponsibility' => 'required|string|max:255',
@@ -174,6 +177,7 @@ class InitialInfoController extends Controller
             $initialInfo->category = $request->category;
             $initialInfo->categoryTitr = $request->categoryTitr;
             $initialInfo->specialTitr = $request->specialTitr;
+            $initialInfo->job = $request->job;
             $initialInfo->nationality = $request->nationality;
             $initialInfo->dispatchGroup = $request->dispatchGroup;
             $initialInfo->militaryResponsibility = $request->militaryResponsibility;

@@ -29,6 +29,7 @@ class CreateInitialInfosTable extends Migration
             $table->string('category')->nullable();
             $table->boolean('categoryTitr')->default(false);
             $table->boolean('specialTitr')->default(false);
+            $table->string('job');
             $table->string('nationality');
             $table->string('dispatchGroup');
             $table->string('militaryResponsibility');

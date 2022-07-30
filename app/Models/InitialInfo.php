@@ -24,6 +24,7 @@ class InitialInfo extends Model
         'category',
         'categoryTitr',
         'specialTitr',
+        'job',
         'nationality',
         'dispatchGroup',
         'militaryResponsibility',

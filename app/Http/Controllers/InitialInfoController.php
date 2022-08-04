@@ -66,7 +66,7 @@ class InitialInfoController extends Controller
                     $initialInfo['circleImage'] = $circleImage;
                     $initialInfo['collectionImages'] = $collectionImages;
                 }
-                return response()->json([$initialInfos],200);
+                return response()->json($initialInfos,200);
             }
         }catch (\Exception $exception){
             return  response()->json(['message'=>[$exception->getMessage()]],500);

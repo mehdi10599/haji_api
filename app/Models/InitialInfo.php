@@ -33,6 +33,7 @@ class InitialInfo extends Model
         'nickname',
         'biography',
         'testament',
+        'shahadatCountry',
         'shahadatDate',
         'shahadatLocation',
         'shahadatOperationName',

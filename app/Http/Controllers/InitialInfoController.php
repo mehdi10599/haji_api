@@ -40,6 +40,41 @@ class InitialInfoController extends Controller
 
     }
 
+    public function showAll()
+    {
+        try {
+            $initialInfos = InitialInfo::all();
+            if($initialInfos == null){
+                return response()->json(['message' => 'Not Found.'], 404);
+            }else{
+
+                foreach ($initialInfos as $initialInfo){
+                    $allImages = ImageCollection::whereBelongsTo($initialInfo)->get();
+                    $coverImage = '';
+                    $circleImage = '';
+                    $collectionImages = [];
+                    foreach($allImages as $image){
+                        if($image['imageField'] == 'cover'){
+                            $coverImage = 'storage/app/public/'.$image['imageAddress'];
+                        }else if($image['imageField'] == 'collection'){
+                            $collectionImages[] = 'storage/app/public/'.$image['imageAddress'];
+                        }else if($image['imageField'] == 'circle'){
+                            $circleImage = 'storage/app/public/'.$image['imageAddress'];
+                        }
+                    }
+                    $initialInfo['coverImage'] = $coverImage;
+                    $initialInfo['circleImage'] = $circleImage;
+                    $initialInfo['collectionImages'] = $collectionImages;
+                }
+                return response()->json([$initialInfos],200);
+            }
+        }catch (\Exception $exception){
+            return  response()->json(['message'=>[$exception->getMessage()]],500);
+        }
+
+
+    }
+
     public function create(Request $request)
     {
         try {
@@ -65,6 +100,7 @@ class InitialInfoController extends Controller
                 'nickname' => 'required|string|max:255',
                 'biography' => 'required|string',
                 'testament' => 'required|string',
+                'shahadatCountry' => 'required|string|max:255',
                 'shahadatDate' => 'required|string|max:255',
                 'shahadatLocation' => 'required|string|max:255',
                 'shahadatOperationName' => 'required|string|max:255',
@@ -102,6 +138,7 @@ class InitialInfoController extends Controller
             $initialInfo->nickname = $request->nickname;
             $initialInfo->biography = $request->biography;
             $initialInfo->testament = $request->testament;
+            $initialInfo->shahadatCountry = $request->shahadatCountry;
             $initialInfo->shahadatDate = $request->shahadatDate;
             $initialInfo->shahadatLocation = $request->shahadatLocation;
             $initialInfo->shahadatOperationName = $request->shahadatOperationName;
@@ -150,6 +187,7 @@ class InitialInfoController extends Controller
                 'nickname' => 'required|string|max:255',
                 'biography' => 'required|string',
                 'testament' => 'required|string',
+                'shahadatCountry' => 'required|string|max:255',
                 'shahadatDate' => 'required|string|max:255',
                 'shahadatLocation' => 'required|string|max:255',
                 'shahadatOperationName' => 'required|string|max:255',
@@ -186,6 +224,7 @@ class InitialInfoController extends Controller
             $initialInfo->nickname = $request->nickname;
             $initialInfo->biography = $request->biography;
             $initialInfo->testament = $request->testament;
+            $initialInfo->shahadatCountry = $request->shahadatCountry;
             $initialInfo->shahadatDate = $request->shahadatDate;
             $initialInfo->shahadatLocation = $request->shahadatLocation;
             $initialInfo->shahadatOperationName = $request->shahadatOperationName;

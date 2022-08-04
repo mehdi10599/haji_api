@@ -31,6 +31,7 @@ Route::post('/me', [AuthController::class, 'me'])->middleware('auth:sanctum');
 
 Route::post('initial_info/create', [InitialInfoController::class, 'create'])->middleware('auth:sanctum');
 Route::get('initial_info/show/{id}', [InitialInfoController::class, 'show']);
+Route::get('initial_info/show_all', [InitialInfoController::class, 'showAll']);
 Route::post('initial_info/update/{id}', [InitialInfoController::class, 'update'])->middleware('auth:sanctum');
 Route::delete('initial_info/delete/{id}', [InitialInfoController::class, 'delete'])->middleware('auth:sanctum');
 

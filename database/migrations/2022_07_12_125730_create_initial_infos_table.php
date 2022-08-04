@@ -38,6 +38,7 @@ class CreateInitialInfosTable extends Migration
             $table->string('nickname');
             $table->longText('biography');
             $table->longText('testament');
+            $table->string('shahadatCountry');
             $table->string('shahadatDate');
             $table->string('shahadatLocation');
             $table->string('shahadatOperationName');
